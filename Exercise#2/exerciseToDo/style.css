@@ -1,0 +1,21 @@
+/* ทำให้ดูเป็น "cards" ชัด ๆ ตาม requirement */
+.task-card {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  background: #fff;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.task-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.06);
+}
+
+.task-title {
+  word-break: break-word;
+}
+
+.task-completed .task-title {
+  text-decoration: line-through;
+  opacity: 0.65;
+}

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>To-Do List (Bootstrap 5)</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body class="bg-black">
+
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 col-xl-7">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                            <div>
+                                <h1 class="h4 mb-1">To-Do List</h1>
+                            </div>
+                            <div class="text-end">
+                                <div id="counter" class="small text-muted">0 total • 0 active • 0 completed</div>
+                            </div>
+                        </div>
+
+                        <!-- Add task -->
+                        <!-- Add Task Form -->
+                        <form id="addForm" class="row g-2 align-items-end mb-1" autocomplete="off">
+
+                            <!-- Task title -->
+                            <div class="col-12 col-sm-7">
+                                <label class="form-label mb-1" for="taskTitle">Task</label>
+                                <input id="taskTitle" class="form-control" type="text"
+                                    placeholder="Add a task... (press Enter)" />
+                            </div>
+
+                            <!-- Priority -->
+                            <div class="col-12 col-sm-3">
+                                <label class="form-label mb-1" for="taskPriority">Priority</label>
+                                <select id="taskPriority" class="form-select">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+
+                            <!-- Add button -->
+                            <div class="col-12 col-sm-2 d-grid">
+                                <!-- label ว่าง เพื่อให้สูงเท่าช่องอื่น -->
+                                <label class="form-label mb-1 invisible">Add</label>
+                                <button type="submit" class="btn btn-primary">
+                                    + Add
+                                </button>
+                            </div>
+
+                        </form>
+
+                        <!-- 🔥 แยก form-text ออกมานอก row -->
+                        <div class="form-text mb-3">
+                            พิมพ์ชื่อ task แล้วกด Enter หรือกดปุ่ม Add
+                        </div>
+
+
+                        <!-- Search + Filters -->
+                        <div class="row g-2 align-items-center mb-3">
+
+                            <!-- Search -->
+                            <div class="col-12 col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">🔎</span>
+                                    <input id="searchInput" class="form-control" type="search"
+                                        placeholder="Search tasks..." />
+                                </div>
+                            </div>
+
+                            <!-- Filters + Clear -->
+                            <div class="col-12 col-sm-6">
+                                <div class="d-flex gap-2 justify-content-sm-end align-items-center">
+
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="filters">
+                                        <button type="button" class="btn btn-outline-secondary active"
+                                            data-filter="all">
+                                            All
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary" data-filter="active">
+                                            Active
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary" data-filter="completed">
+                                            Completed
+                                        </button>
+                                    </div>
+
+                                    <button id="clearCompletedBtn" type="button" class="btn btn-outline-danger btn-sm">
+                                        Clear Completed
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- List -->
+                        <div id="emptyState" class="text-center text-muted py-4 d-none">
+                            Task is Empty!
+                        </div>
+
+                        <div id="taskList" class="vstack gap-2">
+                            <!-- tasks render here -->
+                        </div>
+
+                        <hr class="my-4" />
+                        <div class="small text-muted text-center">
+                            Built with Bootstrap 5 • Saved in localStorage
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="editForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Task</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="hidden" id="editTaskId" />
+
+                        <div class="mb-3">
+                            <label class="form-label" for="editTitle">Title</label>
+                            <input id="editTitle" type="text" class="form-control" />
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="editPriority">Priority</label>
+                            <select id="editPriority" class="form-select">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+
+                        <div class="form-text">กด Save เพื่อบันทึกการแก้ไข</div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
