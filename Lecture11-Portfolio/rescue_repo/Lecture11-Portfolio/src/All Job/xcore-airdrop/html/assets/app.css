@@ -1,0 +1,1231 @@
+@import url(https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&display=swap);
+@import url(../custom.css);
+
+:root {
+    --scale: 1;
+    --base-screen-height: 1440;
+    --px: calc(1vh / var(--base-screen-height) * 100 * var(--scale));
+    
+    /* --- UR TOWN FIVEM SAFE VARIABLES --- */
+    --ur-primary: #12b8ff; 
+    --ur-primary-glow: rgba(18, 184, 255, 0.5); 
+    --ur-bg-main: rgba(10, 14, 22, 0.95); 
+    --ur-bg-panel: rgba(10, 14, 22, 0.3); /* 🟢 ปรับให้ใสขึ้น มองทะลุเกมได้ */
+    --ur-bg-overlay: rgba(5, 7, 12, 0.85); 
+    --ur-border-light: rgba(255, 255, 255, 0.4); 
+    --ur-danger: #ff4d4d; 
+    
+    /* Elegant Shadows & Sleek Corners */
+    --ur-shadow-soft: 0 calc(10 * var(--px)) calc(25 * var(--px)) rgba(0, 0, 0, 0.6);
+    --ur-shadow-btn: 0 calc(2 * var(--px)) calc(6 * var(--px)) rgba(0, 0, 0, 0.3); 
+    --ur-shadow-elegant: 0 calc(20 * var(--px)) calc(60 * var(--px)) rgba(0, 0, 0, 0.8);
+    
+    --radius-lg: calc(20 * var(--px)); 
+    --radius-md: calc(12 * var(--px)); 
+    --radius-sm: calc(6 * var(--px));  
+    --radius-btn: calc(4 * var(--px)); 
+    --radius-pill: calc(50 * var(--px)); 
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Mitr', sans-serif;
+    font-weight: 300;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    color: #fcf7f7;
+    white-space: nowrap
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+}
+
+.overlay1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--ur-bg-overlay); 
+    top: 0;
+    left: 0;
+    z-index: 0;
+    /* ไม่มี blur ตามแบบฉบับ FiveM Safe */
+}
+
+body>* {
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    overflow: hidden
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0
+}
+
+.__airdrops {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: calc(10 * var(--px));
+    flex-wrap: wrap;
+    gap: calc(10 * var(--px));
+    z-index: 999
+}
+
+.__airdrops.right {
+    width: auto;
+    height: 100%;
+    flex-direction: column;
+    right: 0
+}
+
+.__airdrops.left {
+    width: auto;
+    height: 100%;
+    flex-direction: column;
+    left: 0
+}
+
+/* =========================================
+   AIRDROP CARDS (FIVEM SAFE GLASSMORPHISM)
+   ========================================= */
+.__airdrop {
+    min-width: calc(290 * var(--px)); 
+    height: calc(105 * var(--px)); 
+    
+    /* 🟢 พื้นหลังใสแบบไม่บัคใน FiveM */
+    background: var(--ur-bg-panel); 
+    
+    border-radius: calc(4 * var(--px)) var(--radius-md) var(--radius-md) calc(4 * var(--px)); 
+    display: flex;
+    align-items: stretch; 
+    position: relative;
+    padding: calc(10 * var(--px)); 
+    box-sizing: border-box;
+    transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* 🟢 กรอบสีขาวๆ พร้อมเงาสีฟ้าเรืองแสง */
+    border: calc(1 * var(--px)) solid var(--ur-border-light); 
+    border-left: calc(4 * var(--px)) solid var(--ur-primary);
+    box-shadow: 0 0 calc(15 * var(--px)) rgba(18, 184, 255, 0.3), 
+                inset 0 0 calc(15 * var(--px)) rgba(18, 184, 255, 0.15); 
+    overflow: hidden;
+}
+
+.__airdrops.top .__airdrop {
+    min-width: unset;
+    width: calc(165 * var(--px)); 
+    height: auto; 
+    min-height: calc(165 * var(--px));
+    padding-bottom: calc(15 * var(--px));
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.05); /* Softer left border */
+    border-top: calc(4 * var(--px)) solid var(--ur-primary);
+    border-radius: var(--radius-md);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.5) 100%), var(--ur-bg-panel);
+    box-shadow: 0 calc(10 * var(--px)) calc(20 * var(--px)) rgba(0, 0, 0, 0.4), 
+                inset 0 0 calc(20 * var(--px)) rgba(255, 255, 255, 0.02);
+}
+
+.__airdrop::before,
+.__airdrop::after {
+    display: none; 
+}
+
+.__airdrop:hover {
+    transform: translateY(calc(-4 * var(--px)));
+    background: rgba(10, 14, 22, 0.5); /* ทึบขึ้นนิดนึงตอนชี้ให้รู้ว่า Focus */
+    border-color: rgba(255, 255, 255, 0.8); 
+    box-shadow: 0 calc(10 * var(--px)) calc(20 * var(--px)) rgba(0, 0, 0, 0.6), 
+                0 0 calc(20 * var(--px)) var(--ur-primary-glow), 
+                inset 0 0 calc(20 * var(--px)) rgba(18, 184, 255, 0.3); 
+    border-left-width: calc(6 * var(--px)); 
+}
+
+.__airdrops.top .__airdrop:hover {
+    border-top-width: calc(6 * var(--px)); 
+    border-left-width: calc(1 * var(--px));
+}
+
+.__image {
+    width: calc(85 * var(--px)); 
+    height: calc(85 * var(--px));
+    border-radius: var(--radius-sm); 
+    position: relative;
+    background: rgba(0, 0, 0, 0.6); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 calc(10 * var(--px)) rgba(0,0,0,0.8);
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.1);
+}
+
+.__airdrops.top .__image {
+    width: calc(85 * var(--px)); 
+    height: calc(85 * var(--px));
+    margin-bottom: calc(5 * var(--px));
+    background: radial-gradient(circle, rgba(18, 184, 255, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
+    box-shadow: 0 calc(4 * var(--px)) calc(12 * var(--px)) rgba(0, 0, 0, 0.5), inset 0 0 calc(15 * var(--px)) rgba(0, 0, 0, 0.8);
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.15);
+}
+
+.__image img.default {
+    height: 75%; 
+    z-index: 9;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.__airdrop:hover .__image img.default {
+    transform: scale(1.15) rotate(-3deg); 
+}
+
+.__image img.overlay {
+    display: none; 
+}
+
+.__content {
+    width: calc(100% - calc(85 * var(--px))); 
+    padding: 0 0 0 calc(15 * var(--px)); 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.__content .__title {
+    font-size: calc(18 * var(--px));
+    font-weight: 500; 
+    color: #ffffff;
+    letter-spacing: calc(0.5 * var(--px));
+    text-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.9);
+}
+
+.__airdrops.top .__content {
+    width: 100%; 
+    padding: calc(4 * var(--px)) 0 0 0; 
+    justify-content: center;
+    align-items: center;
+}
+
+.__airdrops.top .__content .__title {
+    font-size: calc(15 * var(--px));
+}
+
+.__content .__desc {
+    font-size: calc(13 * var(--px));
+    color: #cbd5e1; 
+    margin-top: calc(-3 * var(--px));
+    text-shadow: 0 calc(1 * var(--px)) calc(3 * var(--px)) rgba(0,0,0,0.9);
+}
+
+.__menu {
+    width: 100%;
+    margin-top: auto; 
+    display: flex;
+    justify-content: flex-start; 
+    gap: calc(8 * var(--px)); 
+    padding-top: calc(8 * var(--px));
+    border-top: calc(1 * var(--px)) dashed rgba(255, 255, 255, 0.2); 
+}
+
+.__airdrops.top .__menu {
+    width: calc(100% - calc(10 * var(--px)));
+    margin-top: calc(8 * var(--px)); 
+    justify-content: center; 
+    padding-top: calc(8 * var(--px));
+    border-top: calc(1 * var(--px)) dashed rgba(255, 255, 255, 0.15);
+}
+
+.__airdrops.top .__menu>.middle {
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--ur-primary);
+    border: calc(1 * var(--px)) solid rgba(18, 184, 255, 0.5);
+    box-shadow: 0 calc(2 * var(--px)) calc(6 * var(--px)) rgba(0,0,0,0.6), inset 0 0 calc(8 * var(--px)) rgba(18, 184, 255, 0.1), 0 0 calc(8 * var(--px)) rgba(18, 184, 255, 0.2);
+}
+
+.__airdrops.top .__menu>.middle:hover {
+    background: rgba(18, 184, 255, 0.15); 
+    color: #fff;
+    border-color: rgba(18, 184, 255, 0.8);
+    box-shadow: 0 0 calc(8 * var(--px)) rgba(18, 184, 255, 0.5);
+    transform: translateY(calc(-1 * var(--px)));
+}
+
+.__menu * {
+    font-size: calc(16 * var(--px))
+}
+
+.__menu img {
+    width: calc(14 * var(--px)); 
+    opacity: 0.9;
+}
+
+.__menu>.middle {
+    font-size: calc(12 * var(--px));
+    font-weight: 400;
+    gap: calc(6 * var(--px));
+    padding: calc(4 * var(--px)) calc(12 * var(--px));
+    border-radius: var(--radius-btn); 
+    background: rgba(0, 0, 0, 0.5); 
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.2);
+    color: #cbd5e1;
+    box-shadow: 0 calc(2 * var(--px)) calc(6 * var(--px)) rgba(0, 0, 0, 0.6); 
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 calc(1 * var(--px)) calc(2 * var(--px)) rgba(0,0,0,0.8);
+}
+
+.__menu>.middle:hover {
+    background: rgba(18, 184, 255, 0.2); 
+    color: #fff;
+    border-color: rgba(18, 184, 255, 0.8); 
+    box-shadow: 0 0 calc(8 * var(--px)) var(--ur-primary-glow);
+    transform: translateY(calc(-1 * var(--px))); 
+}
+
+.__menu>.middle.red {
+    background: rgba(255, 77, 77, 0.1);
+    color: #ff8787;
+    border-color: rgba(255, 77, 77, 0.3);
+}
+
+.__global-time {
+    display: flex;
+    align-items: center;
+    margin-left: calc(10 * var(--px));
+}
+
+.__global-time .middle {
+    font-size: calc(16 * var(--px));
+    font-weight: 500;
+    gap: calc(10 * var(--px));
+    padding: calc(6 * var(--px)) calc(20 * var(--px));
+    border-radius: var(--radius-md); 
+    background: var(--ur-bg-panel); 
+    border: calc(1 * var(--px)) solid var(--ur-border-light);
+    border-left: calc(4 * var(--px)) solid var(--ur-primary); 
+    color: #fff;
+    box-shadow: 0 0 calc(12 * var(--px)) rgba(18, 184, 255, 0.3), 
+                inset 0 0 calc(10 * var(--px)) rgba(18, 184, 255, 0.15);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.9);
+}
+
+.__global-time .middle:hover {
+    background: rgba(18, 184, 255, 0.1); 
+    border-color: rgba(255, 255, 255, 0.4); 
+    box-shadow: 0 0 calc(15 * var(--px)) var(--ur-primary-glow),
+                inset 0 0 calc(12 * var(--px)) rgba(18, 184, 255, 0.3);
+    transform: translateY(calc(-1 * var(--px))); 
+}
+
+.__global-time .middle img {
+    width: calc(18 * var(--px)); 
+    opacity: 0.9;
+}
+
+/* =========================================
+   🔴 PLAYING STATE (กำลังเริ่มเล่น / ธีมแดงโปร่งใสโทนดำ)
+   ========================================= */
+.__airdrop.playing {
+    background: rgba(10, 14, 22, 0.6); /* พื้นหลังโปร่งใสโทนดำ */
+    border-color: rgba(255, 77, 77, 0.3);
+    border-left-color: var(--ur-danger);
+    box-shadow: 0 0 calc(15 * var(--px)) rgba(255, 77, 77, 0.2), 
+                inset 0 0 calc(15 * var(--px)) rgba(255, 77, 77, 0.1);
+}
+
+.__airdrops.top .__airdrop.playing {
+    border-left-color: rgba(255, 255, 255, 0.05); /* Softer left border */
+    border-top-color: var(--ur-danger);
+    background: linear-gradient(180deg, rgba(255, 77, 77, 0.08) 0%, rgba(0, 0, 0, 0.6) 100%), var(--ur-bg-panel);
+}
+
+.__airdrop.playing:hover {
+    background: rgba(0, 0, 0, 0.8); /* เข้มขึ้นเมื่อชี้ */
+    border-color: rgba(255, 77, 77, 0.8);
+    box-shadow: 0 calc(10 * var(--px)) calc(20 * var(--px)) rgba(0, 0, 0, 0.6), 
+                0 0 calc(20 * var(--px)) rgba(255, 77, 77, 0.4), 
+                inset 0 0 calc(20 * var(--px)) rgba(255, 77, 77, 0.25);
+}
+
+.__airdrops.top .__airdrop.playing:hover {
+    border-left-color: rgba(255, 255, 255, 0.8);
+    border-top-color: rgba(255, 77, 77, 0.8);
+}
+
+.__airdrop.playing .__image {
+    border-color: rgba(255, 77, 77, 0.2);
+    box-shadow: inset 0 0 calc(10 * var(--px)) rgba(255, 77, 77, 0.2);
+}
+
+.__airdrops.top .__airdrop.playing .__image {
+    background: radial-gradient(circle, rgba(255, 77, 77, 0.15) 0%, rgba(0, 0, 0, 0.7) 100%);
+    box-shadow: 0 0 calc(20 * var(--px)) rgba(255, 77, 77, 0.15), inset 0 0 calc(15 * var(--px)) rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 77, 77, 0.4);
+}
+
+.__airdrop.playing .__menu>.middle {
+    background: rgba(0, 0, 0, 0.6); /* ปุ่มดำโปร่งใส */
+    color: var(--ur-danger);
+    border-color: rgba(255, 77, 77, 0.5);
+    box-shadow: 0 calc(2 * var(--px)) calc(6 * var(--px)) rgba(0,0,0,0.6), 
+                0 0 calc(8 * var(--px)) rgba(255, 77, 77, 0.3);
+}
+
+.__airdrop.playing .__menu>.middle:hover {
+    background: rgba(255, 77, 77, 0.15); 
+    color: #fff;
+    border-color: rgba(255, 77, 77, 0.8);
+    box-shadow: 0 0 calc(8 * var(--px)) rgba(255, 77, 77, 0.5);
+    transform: translateY(calc(-1 * var(--px)));
+}
+/* ========================================= */
+
+.middle {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.red-text {
+    color: #ff6b6b;
+}
+
+.green-text {
+    color: #4ade80;
+}
+
+.gold-text {
+    color: #fbbf24;
+}
+
+/* =========================================
+   OTHER COMPONENTS 
+   ========================================= */
+.box__anm {
+    position: absolute;
+    width: auto;
+    top: calc(120 * var(--px));
+    flex-direction: column
+}
+
+.announcement {
+    margin-top: calc(5 * var(--px));
+    font-size: calc(18 * var(--px));
+    color: #fff;
+    font-weight: 400;
+    transition: 0.2s;
+    text-align: center;
+    padding: calc(10 * var(--px)) calc(25 * var(--px));
+    background: var(--ur-bg-panel);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 calc(12 * var(--px)) rgba(18, 184, 255, 0.3), 
+                inset 0 0 calc(10 * var(--px)) rgba(18, 184, 255, 0.15);
+    border: calc(1 * var(--px)) solid var(--ur-border-light);
+    border-left: calc(4 * var(--px)) solid var(--ur-primary); 
+    animation: fadeIn .5s ease-in-out;
+    width: max-content;
+}
+
+.__helps {
+    position: absolute;
+    bottom: calc(50 * var(--px))
+}
+
+.__helps .message {
+    margin: calc(12 * var(--px)) 0;
+    padding: calc(12 * var(--px)) calc(25 * var(--px));
+    text-align: center;
+    max-width: 100%;
+    font-size: calc(16 * var(--px));
+    border-radius: var(--radius-md);
+    background: var(--ur-bg-panel); 
+    border: calc(1 * var(--px)) solid var(--ur-border-light);
+    box-shadow: 0 0 calc(12 * var(--px)) rgba(18, 184, 255, 0.3), 
+                inset 0 0 calc(10 * var(--px)) rgba(18, 184, 255, 0.15);
+    letter-spacing: calc(0.5 * var(--px));
+    text-shadow: 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.8);
+}
+
+.__helps .message>span {
+    border-radius: var(--radius-btn);
+    background-color: var(--ur-primary);
+    padding: calc(4 * var(--px)) calc(12 * var(--px));
+    color: #fff; 
+    font-weight: 500;
+    box-shadow: 0 calc(2 * var(--px)) calc(8 * var(--px)) var(--ur-primary-glow);
+    text-shadow: none;
+}
+
+.__bars {
+    background: rgba(0, 0, 0, 0.8); 
+    position: absolute;
+    bottom: calc(130 * var(--px));
+    border-radius: var(--radius-pill); 
+    width: calc(400 * var(--px));
+    height: calc(12 * var(--px)); 
+    padding: calc(3 * var(--px));
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.1);
+}
+
+.__load {
+    background: var(--ur-primary); 
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-pill); 
+    z-index: 7;
+    box-shadow: 0 0 calc(12 * var(--px)) var(--ur-primary-glow);
+}
+
+/* =========================================
+   MAIN DASHBOARD (INVENTORY/UI)
+   ========================================= */
+.__main {
+    width: calc(750 * var(--px));
+    height: calc(850 * var(--px));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-lg); 
+    background: var(--ur-bg-main); 
+    box-shadow: var(--ur-shadow-elegant); 
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.1); 
+    position: relative
+}
+
+.__main .__header {
+    height: calc(100 * var(--px));
+    justify-content: space-between;
+    padding: 0 calc(40 * var(--px));
+    border-bottom: calc(1 * var(--px)) solid rgba(255,255,255,0.03); 
+}
+
+.__main .__field {
+    gap: calc(12 * var(--px))
+}
+
+.__main .__field:first-child img {
+    width: calc(28 * var(--px));
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+.__main .__field:last-child>.middle.logo {
+    width: calc(48 * var(--px));
+    height: calc(48 * var(--px));
+    background: var(--ur-bg-panel); 
+    border-radius: 50%;
+    padding: calc(2 * var(--px));
+    border: calc(2 * var(--px)) solid var(--ur-primary); 
+    box-shadow: 0 0 calc(12 * var(--px)) var(--ur-primary-glow);
+}
+
+.__main .__footers {
+    height: calc(50 * var(--px));
+    align-items: start;
+    padding-top: calc(10 * var(--px));
+}
+
+.__footers>span {
+    font-size: calc(16 * var(--px));
+    color: #94a3b8;
+    gap: calc(10 * var(--px))
+}
+
+.__footers>span span {
+    padding: calc(6 * var(--px)) calc(18 * var(--px));
+    border-radius: var(--radius-btn); 
+    gap: calc(5 * var(--px));
+    transition: all .3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    color: #fff;
+    box-shadow: var(--ur-shadow-btn); 
+}
+
+.__footers>span span:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(calc(-1 * var(--px)));
+}
+
+.__field:last-child {
+    gap: calc(12 * var(--px))
+}
+
+.__field:last-child>.middle.logo img {
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.__field:last-child .__new {
+    font-size: calc(16 * var(--px));
+    padding: calc(6 * var(--px)) calc(16 * var(--px));
+    border-radius: var(--radius-btn);
+    gap: calc(8 * var(--px));
+    transition: all .3s;
+    background: rgba(255, 255, 255, 0.05);
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    box-shadow: var(--ur-shadow-btn); 
+}
+
+.__field:last-child .__new:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(calc(-1 * var(--px)));
+}
+
+.__field:last-child .__new img {
+    width: calc(26 * var(--px));
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+.__selection {
+    height: calc(50 * var(--px));
+    gap: calc(50 * var(--px));
+    padding: 0 calc(40 * var(--px));
+}
+
+.__selection::after {
+    display: none; 
+}
+
+.__selection .__index img {
+    width: calc(24 * var(--px));
+    filter: brightness(0) invert(0.6);
+    transition: all .3s;
+}
+
+.__selection .__index {
+    font-size: calc(16 * var(--px));
+    padding: calc(10 * var(--px)) 0;
+    border-radius: 0;
+    gap: calc(10 * var(--px));
+    transition: all .3s;
+    cursor: pointer;
+    color: #64748b; 
+    border-bottom: calc(2 * var(--px)) solid transparent; 
+}
+
+.__selection .__index:hover {
+    color: #cbd5e1;
+}
+
+.__selection .__index:hover img {
+    filter: brightness(0) invert(0.9);
+}
+
+.__selection .__index.Active {
+    color: var(--ur-primary); 
+    border-bottom: calc(2 * var(--px)) solid var(--ur-primary);
+}
+
+.__selection .__index.Active img {
+    filter: brightness(0) invert(1);
+}
+
+.__selection .__index:last-child {
+    margin-left: calc(10 * var(--px))
+}
+
+.__wrapper {
+    width: 100%;
+    height: calc(100% - calc(200 * var(--px)));
+    padding: calc(20 * var(--px)) calc(40 * var(--px)) calc(20 * var(--px)) calc(40 * var(--px))
+}
+
+.__inventory .__wrapper {
+    height: calc(100% - calc(130 * var(--px)));
+    padding: 0 calc(40 * var(--px))
+}
+
+.__response {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    border-radius: var(--radius-md);
+    overflow: auto;
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 calc(5 * var(--px)) calc(15 * var(--px)) rgba(0,0,0,0.8); 
+}
+
+.__response .__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: calc(20 * var(--px)); 
+    grid-gap: calc(15 * var(--px));
+    position: relative
+}
+
+.__response .__grid .__noData {
+    position: absolute;
+    width: 100%;
+    height: calc(100 * var(--px));
+    font-size: calc(15 * var(--px));
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 400
+}
+
+.__grid .__airdrop {
+    background: rgba(10, 14, 22, 0.5); 
+}
+
+.__grid.__players .__airdrop {
+    transition: all .3s
+}
+
+.__players .__airdrop .__overlay {
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    z-index: 99;
+    overflow: hidden;
+    transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
+    left: 0;
+}
+
+.__players .__airdrop .__overlay>.middle {
+    border-radius: var(--radius-md); 
+    background: rgba(10, 14, 22, 0.95); 
+    width: 100%;
+    gap: calc(15 * var(--px));
+    height: 100%; 
+}
+
+.__players .__airdrop .__overlay span {
+    font-size: calc(14 * var(--px));
+    padding: calc(8 * var(--px)) calc(20 * var(--px));
+    border-radius: var(--radius-btn); 
+    gap: calc(5 * var(--px));
+    transition: all .3s;
+    background: rgba(255, 255, 255, 0.05);
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    box-shadow: var(--ur-shadow-btn); 
+}
+
+.__players .__airdrop .__overlay span:hover {
+    background: var(--ur-primary);
+    border-color: var(--ur-primary);
+    color: #fff;
+    box-shadow: 0 calc(4 * var(--px)) calc(12 * var(--px)) var(--ur-primary-glow);
+}
+
+.__grid.__players .__airdrop:hover .__overlay {
+    width: 100%
+}
+
+/* 🟢 จัดการ UI ในหน้าช่องเก็บของ */
+.__main.__inventory .__airdrop {
+    justify-content: start;
+    gap: calc(15 * var(--px));
+}
+
+.__main.__inventory .__airdrop:not(.ggwp) {
+    cursor: pointer
+}
+
+.__main.__inventory .__airdrop .__content {
+    justify-content: center;
+    gap: calc(8 * var(--px));
+    padding: 0; 
+}
+
+.__main.__inventory .__airdrop .__image img {
+    width: 100%;
+    height: auto;
+    padding: 0;
+}
+
+/* =========================================
+   🟢 AFTER STATE (คลาส .ggwp กล่องที่ห้ามเข้า/จบแล้ว)
+   ========================================= */
+.__main.__inventory .__airdrop.ggwp {
+    border: calc(1 * var(--px)) solid rgba(255, 77, 77, 0.4); 
+    border-left: calc(4 * var(--px)) solid var(--ur-danger); 
+    background: rgba(40, 15, 15, 0.5); 
+    box-shadow: 0 0 calc(10 * var(--px)) rgba(255, 77, 77, 0.2), 
+                inset 0 0 calc(10 * var(--px)) rgba(255, 77, 77, 0.1);
+    cursor: not-allowed;
+}
+
+.__main.__inventory .__airdrop.ggwp:hover {
+    transform: translateY(0); 
+    border-left-width: calc(4 * var(--px)); 
+    background: rgba(40, 15, 15, 0.5); 
+    border-color: rgba(255, 77, 77, 0.4);
+    box-shadow: 0 0 calc(10 * var(--px)) rgba(255, 77, 77, 0.2), 
+                inset 0 0 calc(10 * var(--px)) rgba(255, 77, 77, 0.1);
+}
+
+.__main.__inventory .__airdrop.ggwp .__title {
+    color: var(--ur-danger); 
+}
+
+.__main.__inventory .__airdrop.ggwp .__desc {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.__main.__inventory .__airdrop.ggwp .__image {
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 0 calc(15 * var(--px)) rgba(255, 0, 0, 0.3); 
+    border-color: rgba(255, 77, 77, 0.2);
+}
+
+.__main.__inventory .__airdrop.ggwp .__menu>.middle {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff9999;
+    border-color: rgba(255, 77, 77, 0.3);
+    box-shadow: none;
+}
+
+.__main.__inventory .__airdrop.ggwp * {
+    opacity: 0.9; 
+}
+/* ========================================= */
+
+*::-webkit-scrollbar {
+    display: none
+}
+
+*::-webkit-scrollbar-thumb {
+    display: none
+}
+
+.__grid.__overview {
+    grid-template-columns: 1fr
+}
+
+.__grid.__overview .__airdrop {
+    height: calc(150 * var(--px))
+}
+
+.__grid.__overview .__airdrop {
+    display: flex;
+    justify-content: flex-start
+}
+
+.__grid.__overview .__airdrop .__image {
+    position: relative;
+    width: calc(150 * var(--px))
+}
+
+.__grid.__overview .__airdrop .__image img.overlay:nth-child(1) {
+    position: absolute;
+    left: calc(-20 * var(--px));
+    top: calc(-5 * var(--px))
+}
+
+.__grid.__overview .__airdrop .__image img.overlay:nth-child(3) {
+    position: absolute;
+    left: calc(5 * var(--px));
+    top: calc(10 * var(--px))
+}
+
+.__grid.__overview .__airdrop .__image .__create {
+    z-index: 9
+}
+
+.__grid.__overview .__content .__title {
+    font-size: calc(18 * var(--px))
+}
+
+.__grid.__overview .__content {
+    width: calc(350 * var(--px))
+}
+
+.__grid.__overview .__content .__title:nth-child(3) {
+    margin-top: calc(10 * var(--px))
+}
+
+.__grid.__overview .__content .__menus {
+    width: 100%;
+    overflow: auto;
+    gap: calc(10 * var(--px));
+    display: flex;
+    align-items: center
+}
+
+.__grid.__overview .__content .__menus>div {
+    font-size: calc(16 * var(--px));
+    color: #94a3b8;
+    font-weight: 400
+}
+
+.__rewards {
+    width: calc(140 * var(--px));
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-around;
+    border-left: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.02);
+}
+
+.__rewards .__card {
+    width: 70%;
+    height: 70%;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.05);
+}
+
+.__rewards .__card img {
+    width: 60%
+}
+
+.__rewards .__btn {
+    width: 70%;
+    height: 10%;
+    align-items: end;
+    gap: calc(20 * var(--px));
+    transition: all .3s;
+    cursor: pointer
+}
+
+.__rewards .__btn div {
+    background: rgba(255, 255, 255, 0.1);
+    width: calc(40 * var(--px));
+    height: calc(25 * var(--px));
+    border-radius: var(--radius-btn);
+    transition: all .2s;
+    box-shadow: var(--ur-shadow-btn); 
+}
+
+.__rewards .__btn img {
+    width: calc(15 * var(--px));
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+.__prev {
+    transform: rotate(0.5turn)
+}
+
+.__rewards .__btn div:hover {
+    background: var(--ur-primary);
+    box-shadow: 0 calc(2 * var(--px)) calc(8 * var(--px)) var(--ur-primary-glow);
+}
+
+.__rewards .__btn div:hover img {
+    opacity: 1;
+}
+
+.__rewards>img {
+    cursor: pointer;
+    transition: all .5s ease;
+    width: calc(200 * var(--px));
+}
+
+.__main.blur>*:not(.__overlay-app) {
+    /* ใช้ opacity ทำหลอกแทน filter blur เพื่อปลอดภัยในเกม */
+    opacity: 0.4;
+}
+
+/* Application Overlay */
+.__overlay-app {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(5, 7, 12, 0.9); 
+    z-index: 9;
+}
+
+.__app {
+    background: var(--ur-bg-main);
+    width: calc(500 * var(--px));
+    height: calc(600 * var(--px));
+    border-radius: var(--radius-lg);
+    flex-direction: column;
+    justify-content: start;
+    box-shadow: var(--ur-shadow-elegant);
+    border: calc(1 * var(--px)) solid var(--ur-border-light);
+}
+
+.__app>.__header {
+    margin: 0;
+    width: 100%;
+    height: calc(70 * var(--px));
+    font-size: calc(18 * var(--px));
+    font-weight: 400;
+    border-bottom: calc(1 * var(--px)) solid rgba(255,255,255,0.03);
+}
+
+.__app>.__check {
+    margin: 0;
+    width: 100%;
+    height: calc(70 * var(--px));
+    font-size: calc(16 * var(--px));
+    color: #e2e8f0;
+    justify-content: start;
+    padding: 0 calc(55 * var(--px));
+    position: relative;
+    cursor: pointer;
+    transition: all .3s
+}
+
+.__check::before {
+    content: "";
+    width: calc(16 * var(--px)); 
+    height: calc(16 * var(--px));
+    background: rgba(255, 255, 255, 0.05); 
+    position: absolute;
+    left: calc(30 * var(--px));
+    border-radius: calc(4 * var(--px)); 
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    box-shadow: inset 0 calc(2 * var(--px)) calc(4 * var(--px)) rgba(0,0,0,0.3); 
+}
+
+.__check.__on::before {
+    background: var(--ur-primary); 
+    border-color: var(--ur-primary);
+    box-shadow: 0 calc(2 * var(--px)) calc(8 * var(--px)) var(--ur-primary-glow);
+}
+
+.__app>.__header span:last-child {
+    color: #64748b;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.__app>.__header span:last-child:hover {
+    color: #fff;
+}
+
+.__app>.__wrappers {
+    height: calc(500 * var(--px));
+    width: 100%;
+    padding: calc(15 * var(--px)) calc(50 * var(--px));
+    overflow: auto
+}
+
+.__wrappers .__airdrop {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.__wrappers .__airdrop {
+    border-left: none;
+}
+
+.__wrappers .__airdrop .__title {
+    font-size: calc(16 * var(--px));
+    text-shadow: none;
+}
+
+.__wrappers .__airdrop .__image {
+    position: relative;
+    width: calc(200 * var(--px));
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.__wrappers .__grids {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: calc(10 * var(--px))
+}
+
+.__wrappers .__content {
+    display: flex;
+    gap: calc(20 * var(--px));
+    padding: 0;
+}
+
+.__wrappers .__rewards {
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    border: calc(1 * var(--px)) solid rgba(255,255,255,0.08);
+    transition: all 0.2s;
+    box-shadow: var(--ur-shadow-btn);
+}
+
+.__wrappers .__rewards img {
+    width: calc(40 * var(--px));
+    filter: brightness(0) invert(0.6);
+    transition: all 0.2s;
+}
+
+.__wrappers .__rewards:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(calc(-2 * var(--px)));
+}
+
+.__wrappers .__rewards:hover img {
+    filter: brightness(0) invert(1);
+    transform: scale(1.05);
+}
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.35s
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0
+}
+
+.slide-fade-enter-active {
+    transition: all 0.3s
+}
+
+.slide-fade-leave-active {
+    transition: all 0.3s
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: scale(1.05);
+    opacity: 0
+}
+
+.__killScore {
+    background: rgba(10, 14, 22, 0.95); 
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.__killScore .__box {
+    min-width: calc(600 * var(--px))
+}
+
+.__killScore .__box .__top {
+    justify-content: space-between;
+    align-items: end;
+    position: relative;
+    padding: 0 calc(10 * var(--px)) calc(20 * var(--px)) 0;
+    overflow: visible
+}
+
+.__killScore .__box .__top>.middle .__name {
+    font-size: calc(30 * var(--px));
+    color: #fff;
+    font-weight: 500;
+}
+
+.__killScore .__box .__top span:last-child {
+    color: var(--ur-primary);
+}
+
+.__killScore .__box .__top .img {
+    width: calc(60 * var(--px));
+    height: calc(60 * var(--px));
+    background: linear-gradient(to top, var(--ur-primary) 0%, var(--ur-primary) 100%); 
+    transform: none;
+    -webkit-mask-image: url(../img/icon/sabotage.png);
+    mask-image: url(../img/icon/sabotage.png);
+    mask-position: center;
+    mask-size: cover;
+    -webkit-mask-position: center;
+    -webkit-mask-size: cover;
+    opacity: 0.9;
+}
+
+.__killScore .__box .__top>.middle {
+    gap: calc(15 * var(--px));
+    align-items: end
+}
+
+.__killScore .__slotted {
+    display: flex;
+    flex-direction: column;
+    gap: calc(10 * var(--px))
+}
+
+.__killScore .__slotted>div {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03); 
+    height: calc(50 * var(--px));
+    justify-content: start;
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: calc(1 * var(--px)) solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--ur-shadow-soft);
+}
+
+.__killScore .__slotted div .__pts {
+    width: calc(50 * var(--px));
+    background: var(--ur-primary);
+    aspect-ratio: 1/1;
+    font-size: calc(18 * var(--px));
+    font-weight: 500;
+    z-index: 999;
+    color: #fff;
+    box-shadow: 0 0 calc(15 * var(--px)) var(--ur-primary-glow);
+}
+
+.__slotted .__item {
+    justify-content: space-between;
+    flex: 1;
+    padding: 0 calc(20 * var(--px)) 0 calc(15 * var(--px))
+}
+
+.__slotted .__item * {
+    font-size: calc(20 * var(--px));
+    font-weight: 400;
+}
+
+.__slotted .opacity {
+    opacity: .4
+}
+
+.__killScore .__footer {
+    background: var(--ur-primary); 
+    text-align: center;
+    margin-top: calc(20 * var(--px));
+    font-size: calc(18 * var(--px));
+    font-weight: 500;
+    color: #fff; 
+    border-radius: var(--radius-btn);
+    padding: calc(10 * var(--px)) 0;
+    box-shadow: 0 calc(4 * var(--px)) calc(15 * var(--px)) var(--ur-primary-glow);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.__killScore .__footer:hover {
+    background: #10a5e6;
+    transform: translateY(calc(-2 * var(--px)));
+}

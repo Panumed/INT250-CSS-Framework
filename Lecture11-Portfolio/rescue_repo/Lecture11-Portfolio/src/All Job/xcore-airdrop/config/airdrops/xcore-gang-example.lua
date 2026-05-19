@@ -1,0 +1,31 @@
+---@description ไฟล์นี้เป็นแค่ตัวอย่างการตั้งค่า airdrop ที่เชื่อมกับระบบ xcore-gang เท่านั้น
+-- config.airdrops[#config.airdrops + 1] = {
+-- 	Name = "เชื่อมจาก xcore-gang",
+-- 	Permission = {
+-- 		Whitelist = {
+-- 			---@field Unique string ตัวเลือกประเภทการตรวจสอบสิทธิ์
+-- 			---@props "item" ตรวจสอบด้วยไอเท็ม | job ตรวจสอบด้วยอาชีพ | xcore-gang ตรวจสอบด้วยแก๊ง
+-- 			---@field Name string[] ชื่อไอเท็ม หรือ ชื่ออาชีพ หรือ ชื่อแก๊ง
+-- 			---@props หากใช้ item ให้ใส่ชื่อไอเท็มที่ต้องการตรวจสอบ เช่น "water", "bread"
+-- 			---@props หากใช้ job ให้ใส่ชื่ออาชีพที่ต้องการตรวจสอบ เช่น "police", "ambulance"
+-- 			---@props หากใช้ xcore-gang ให้ใส่ชื่อแก๊งที่ต้องการตรวจสอบ เช่น "gang.1", "gang.2" (รูปแบบ format types.rank เช่น gang.1)
+-- 			---@description Unique "xcore-gang" รองรับเซิฟเวอร์ที่ใช้ระบบ xcore-gang เท่านั้น
+
+-- 			Unique = "xcore-gang",
+-- 			Name = {
+-- 				"gang.1",  -- // gang.1 = แก๊ง Rank 1
+-- 				"gang.2", -- // gang.2 = แก๊ง Rank 2
+
+-- 				"family.1", -- // family.1 = family Rank 1
+-- 				"family.2", -- // family.2 = family Rank 2
+
+-- 				-- "matrix_saki_2s",
+-- 				-- "matrix_saki_3s",
+-- 			},
+-- 		},
+-- 		Blacklist = {
+-- 			Unique = "",
+-- 			Name = {}
+-- 		},
+-- 	},
+-- }

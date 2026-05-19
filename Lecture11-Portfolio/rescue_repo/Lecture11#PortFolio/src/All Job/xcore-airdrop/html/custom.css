@@ -1,0 +1,9 @@
+:root {
+    --background: #9FC0FF;
+    --menu-background: hsla(219, 100%, 81%, 0.185);
+    --menu-outline: hsla(219, 100%, 81%, 0.788);
+
+    --background-secondary: #CB3E3E;
+    --menu-background-secondary: hsla(0, 58%, 52%, 0.185);
+    --menu-outline-secondary: hsla(0, 58%, 52%, 0.788);
+}

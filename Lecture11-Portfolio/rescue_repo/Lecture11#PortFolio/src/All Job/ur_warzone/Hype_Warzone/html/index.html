@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+    
+    <!-- Dependencies -->
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Warzone Menu</title>
+</head>
+<body>
+    
+    <!-- Floating Tooltip -->
+    <div class="tooptip">
+        PRESS <span>G</span> TO OPEN MENU
+    </div>
+
+    <!-- Main Background Overlay -->
+    <!-- <div class="background-all"> -->
+        <!-- Main UI Container -->
+        <div class="container"  >
+            
+            <!-- Top Header mimicking reference image -->
+            <div class="main-header">
+                <div class="main-header-left">
+                    <div class="logo-box">
+                        <iconify-icon icon="mingcute:flash-fill"></iconify-icon>
+                    </div>
+                    <div class="title-box">
+                        <h2>WARZONE</h2>
+                        <p>SURVIVE & EARN REWARDS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information / Description -->
+            <div class="info-text">
+                Select a category below to purchase items and weapons for your gameplay.
+            </div>
+
+            <!-- Header Navigation (Tabs) -->
+            <div class="header">
+                <div class="menu__name active" data-select="Weapons" onclick="SelectMenu('Weapons')">Weapons</div>
+                <div class="menu__name" data-select="Items" onclick="SelectMenu('Items')">Items</div>
+                <div class="menu__name" data-select="Dimension" onclick="SelectMenu('Dimension')">Dimension</div>
+                <div class="menu__name" data-select="Exit" onclick="SelectMenu('Exit')">Exit</div>
+            </div>
+            
+            <!-- Bonus Boxes (Appears conditionally) -->
+            <div class="itembonusbox-wrapper">
+                <div class="itembonusbox">
+                    <!-- Dynamically populated by JS -->
+                </div>
+            </div>
+
+            <!-- Content Grid Area -->
+            <div class="menuselectdata">
+                <div class="menuselectdatabox">
+                    <!-- Dynamically populated by JS -->
+                </div>
+            </div>
+
+            <!-- Footer Text -->
+            <div class="menufooter">
+                เมื่อออกจาก <span>Warzone</span> อาวุธและไอเทมที่ซื้อจะหาย
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/script.js" type="text/javascript"></script>
+</body>
+</html>

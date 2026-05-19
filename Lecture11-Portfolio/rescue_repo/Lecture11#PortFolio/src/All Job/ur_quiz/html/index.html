@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpeedMath</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Orbitron:wght@400..900&family=Permanent+Marker&family=Prompt:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="app.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="hud-card">
+            <!-- Bouncing Math Decorations -->
+            <img src="./img/time.png" class="math-deco deco-time" alt="x">
+            <img src="./img/plus.png" class="math-deco deco-plus" alt="+">
+            <img src="./img/devide.png" class="math-deco deco-div" alt="÷">
+            <img src="./img/minus.png" class="math-deco deco-minus" alt="-">
+
+            <!-- Header -->
+            <div class="hud-header">
+                <div class="hud-brand">
+                    <div class="hud-logo">
+                        <img src="./img/ur-logo.png" alt="logo">
+                    </div>
+                    <div class="hud-title-group">
+                        <span class="hud-title">SPEEDMATH</span>
+                        <span class="hud-subtitle">Challenge</span>
+                    </div>
+                </div>
+                <div class="hud-status">
+                    <span class="status-dot"></span>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="hud-divider"></div>
+
+            <!-- Timer Section -->
+            <div class="hud-timer-section">
+                <span class="timer-label">เวลานับถอยหลัง</span>
+                <div class="timer-display">
+                    <div class="timer-block">
+                        <span class="timer-digit" id="minutes">10</span>
+                        <span class="timer-unit">นาที</span>
+                    </div>
+                    <span class="timer-colon">:</span>
+                    <div class="timer-block">
+                        <span class="timer-digit" id="seconds">00</span>
+                        <span class="timer-unit">วินาที</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="hud-progress">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- Mascot -->
+        <img src="./img/cal.png" class="hud-mascot" alt="calculator mascot">
+    </div>
+
+
+    <div id="warpperevent" style="display: none;" >
+        <div class=" quiz-card">
+
+            <div class="quiz-header">
+                <div class="quiz-title-row">
+                    <span class="quiz-title">
+                        <span class="text-math">MATH</span><span class="text-matic">ematics</span>
+                    </span>
+                    <span class="quiz-badge"><span id="count">0</span>/10</span>
+                </div>
+                <div class="quiz-divider"></div>
+                <p class="quiz-label">คำถาม</p>
+            </div>
+
+
+            <div class="question">
+                2+2
+            </div>
+
+
+            <div class="answer">
+                <div class="item correct">
+                    <div class="item-inner-pill">
+                        <div class="item-logo"><span class="marker-char">A</span></div>
+                        <p class="answer-val">1</p>
+                    </div>
+                    <div class="item-right-content">
+                        <img src="./img/correct.png">
+                    </div>
+                </div>
+                <div class="item wrong">
+                    <div class="item-inner-pill">
+                        <div class="item-logo"><span class="marker-char">B</span></div>
+                        <p class="answer-val">2</p>
+                    </div>
+                    <div class="item-right-content">
+                        <img src="./img/wrong.png">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-inner-pill">
+                        <div class="item-logo"><span class="marker-char">C</span></div>
+                        <p class="answer-val">3</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-inner-pill">
+                        <div class="item-logo"><span class="marker-char">D</span></div>
+                        <p class="answer-val">4</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="delay">
+                <div class="delay-bg"></div>
+            </div>
+        </div>
+
+
+        <div class="score" style="display: none;">
+            <div class="score-card">
+                <p class="score-label">คุณได้คะแนน</p>
+                <p class="scoretext">5/5</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

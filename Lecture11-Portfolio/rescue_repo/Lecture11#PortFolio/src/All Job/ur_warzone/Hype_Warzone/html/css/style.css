@@ -1,0 +1,447 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: 'Prompt', sans-serif;
+}
+
+:root {
+    --bg-dark-base: rgba(12, 12, 14, 0.95);
+    --bg-card: rgba(255, 255, 255, 0.02);
+    --bg-card-hover: rgba(0, 168, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.06);
+    --border-active: #00A8FF;
+    --accent-blue: #00A8FF;
+    --accent-blue-glow: rgba(0, 168, 255, 0.4);
+    --text-main: #ffffff;
+    --text-muted: #888888;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: url(../img/image.png); */
+}
+
+/* Tooltip Pill */
+.tooptip {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 20, 22, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-color);
+    padding: 8px 24px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 100;
+    text-align: center;
+    /* display: none; */
+    letter-spacing: 0.5px;
+}
+
+.tooptip span {
+    background: transparent;
+    color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    padding: 1px 7px; /* adjusted slightly for border width */
+    border-radius: 6px;
+    font-weight: 700;
+    margin: 0 5px;
+    box-shadow: 0 0 8px var(--accent-blue-glow) inset, 0 0 8px var(--accent-blue-glow);
+}
+
+/* Main Background Overlay */
+.background-all {
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, rgba(10, 10, 12, 0.05) 0%, rgba(5, 5, 8, 0.25) 50%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* display: none; */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Central UI Container (Glass Panel) */
+.container {
+    background: rgba(18, 18, 22, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    width: 850px;
+    height: 650px;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Default: 3D perspective tilt */
+    transform: translate(-50%, -50%) perspective(1200px) rotateY(25deg) rotateX(3deg);
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+    /* display: none; */
+}
+
+.container:hover {
+    /* Straighten on hover */
+    transform: translate(-50%, -50%) perspective(1200px) rotateY(0deg) rotateX(0deg);
+    box-shadow: 0 30px 80px rgba(0, 168, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Top Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+.main-header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-box {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+}
+
+.title-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-box h2 {
+    color: var(--accent-blue);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px var(--accent-blue-glow);
+}
+
+.title-box p {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+.main-header-right {
+    display: flex;
+    align-items: center;
+}
+
+.code-box {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 6px 12px 6px 20px;
+    gap: 15px;
+}
+
+.code-box span {
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.code-value {
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-value iconify-icon {
+    font-size: 16px;
+    color: var(--accent-blue);
+}
+
+/* Inner Info Text */
+.info-text {
+    text-align: center;
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+/* Header Navigation (Tabs) */
+.header {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.menu__name {
+    padding: 10px 35px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.menu__name:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-main);
+}
+
+.menu__name.active {
+    background: rgba(0, 168, 255, 0.1);
+    border-color: var(--accent-blue);
+    color: var(--text-main);
+    box-shadow: 0 0 20px var(--accent-blue-glow);
+}
+
+/* Bonus Box Area (Top of Data list) */
+.itembonusbox-wrapper {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.itembonusbox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.itembonusbox_box {
+    background: rgba(0, 168, 255, 0.03);
+    border: 1px solid rgba(0, 168, 255, 0.2);
+    border-radius: 12px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 120px;
+    transition: 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.itembonusbox_box:hover {
+    background: rgba(0, 168, 255, 0.08);
+    border-color: var(--accent-blue);
+}
+
+.itembonusbox_pic {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.itembonusbox_pic img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+.itembonusbox_count {
+    color: var(--accent-blue);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Content Area */
+.menuselectdata {
+    flex: 1;
+    overflow-y: auto;
+    padding: 5px 10px 5px 0;
+}
+
+/* Custom Minimal Webkit Scrollbar */
+.menuselectdata::-webkit-scrollbar {
+    width: 4px;
+}
+.menuselectdata::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+}
+.menuselectdata::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+.menuselectdata::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Item Grid Structure */
+.menuselectdatabox {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    padding-bottom: 20px;
+}
+
+/* Single Item Box */
+.menuselectdatabox_box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.menuselectdatabox_box:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-active);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 168, 255, 0.05);
+}
+
+/* Top indicator icon (decorative, like in image) */
+.menuselectdatabox_box::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    transition: all 0.3s ease;
+}
+
+.menuselectdatabox_box:hover::before {
+    background: var(--accent-blue);
+    box-shadow: 0 0 8px var(--accent-blue);
+}
+
+/* Item Image Formatting */
+.menuselectdatabox_box_pic {
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.menuselectdatabox_box_pic img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6));
+    transition: all 0.3s ease;
+}
+
+.menuselectdatabox_box:hover .menuselectdatabox_box_pic img {
+    transform: scale(1.15) translateY(-2px);
+}
+
+/* Item Price / Label Formatting */
+.menuselectdatabox_box_count {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    transition: all 0.25s ease;
+}
+
+.menuselectdatabox_box:hover .menuselectdatabox_box_count {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+/* "Confirm" button style on hover replacement */
+.menuselectdatabox_box::after {
+    content: 'SELECT';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--accent-blue);
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 6px;
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.menuselectdatabox_box:hover::after {
+    bottom: 12px;
+    opacity: 1;
+}
+
+.menuselectdatabox_box:hover .menuselectdatabox_box_count {
+    opacity: 0;
+}
+
+/* Footer Section */
+.menufooter {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* faint line */
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    position: relative;
+    width: 100%;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.menufooter span {
+    color: var(--accent-blue);
+    font-weight: 600;
+    text-shadow: 0 0 10px var(--accent-blue-glow);
+}
